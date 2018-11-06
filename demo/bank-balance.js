@@ -14,5 +14,5 @@ const session = new AilosWrapper({
 session.auth().then(token => {
     console.log(`Succesfully logged, token is ${token}`);
     session.setToken(token);
-    session.account.getBalance().then(response => console.log(response));
+    session.account.getBalance().then(response => console.log(JSON.stringify(response, null, 4)));
 }).catch(error => console.error(error));

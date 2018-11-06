@@ -10,7 +10,7 @@ export default function account() {
         return Promise.resolve(response.data.OUTPUT_DATA.WS_RESULT);
       }
   
-      return Promise.reject(new Error('Invalid balance')); 
+      return Promise.reject(new Error('Empty balance')); 
     }),
     getStatement: (startDate, endDate) => this.request(327, {
       DATA_INICIAL: startDate,
@@ -22,7 +22,7 @@ export default function account() {
         return Promise.resolve(response.data.OUTPUT_DATA.WS_RESULT);
       }
   
-      return Promise.reject(new Error('Invalid statement')); 
+      return Promise.reject(new Error('Empty statement')); 
     })
   }
 

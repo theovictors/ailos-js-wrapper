@@ -14,5 +14,5 @@ const session = new AilosWrapper({
 session.auth().then(token => {
     console.log(`Succesfully logged, token is ${token}`);
     session.setToken(token);
-    session.account.getStatement('2018-10-01', '2018-11-05').then(response => console.log(response));
+    session.account.getStatement('2018-10-03', '2018-11-06').then(response => console.log(JSON.stringify(response, null, 4)));
 }).catch(error => console.error(error));
