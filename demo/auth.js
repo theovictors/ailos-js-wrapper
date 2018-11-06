@@ -1,6 +1,7 @@
 /* to run: babel-node auth.js */
 
 global.fetch = require('node-fetch');
+global.Headers = fetch.Headers;
 
 import AilosWrapper from '../src/index';
 

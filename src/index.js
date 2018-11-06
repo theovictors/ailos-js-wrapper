@@ -1,4 +1,5 @@
 import auth from './auth';
+import account from './account';
 
 import API_URL from './config';
 import validateAilosResponse from './utils';
@@ -11,6 +12,7 @@ export default class AilosWrapper {
     this.token = '';
 
     this.auth = auth.bind(this);
+    this.account = account.bind(this)();
   }
 
   setToken(token) {
@@ -19,10 +21,10 @@ export default class AilosWrapper {
 
   request(type, data) {
     const headers = {
-      headers: {
-        Authorization: `'Bearer ${this.token}'`
-      },
       method: 'POST',
+      headers: new Headers({
+        Authorization: `Bearer ${this.token}` 
+      }),
       body: JSON.stringify({
         chn: "3",
         data: data,
@@ -31,8 +33,8 @@ export default class AilosWrapper {
     };
 
     return fetch(API_URL, headers)
-        .then(resp => resp.text())
-        .then(validateAilosResponse);
+            .then(resp => resp.text())
+            .then(validateAilosResponse);
   }
 
 }
