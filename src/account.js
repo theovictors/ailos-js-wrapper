@@ -1,0 +1,20 @@
+import validateAilosResponse from './utils';
+
+export default function account() {
+
+  return {
+    getStatement: (startDate, endDate) => this.request(327, {
+      DATA_INICIAL: startDate,
+      DATA_FINAL: endDate,
+      REGISTROS_POR_PAGINA: 50,     // TODO: pagination
+      POSICAO_PRIMEIRO_REGISTRO: 1
+    }).then(response => {
+      if(typeof response.data.OUTPUT_DATA.WS_RESULT !== 'undefined') {
+        return Promise.resolve(response.data.OUTPUT_DATA.WS_RESULT);
+      }
+  
+      return Promise.reject(new Error('Invalid statement')); 
+    })
+  }
+
+}
