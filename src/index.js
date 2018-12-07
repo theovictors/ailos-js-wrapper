@@ -1,8 +1,9 @@
 import auth from './auth';
 import account from './account';
+import transfer from './transfer';
 
 import API_URL from './config';
-import validateAilosResponse from './utils';
+import { validateAilosResponse } from './utils';
 
 export default class AilosWrapper {
   constructor(options) {
@@ -13,14 +14,18 @@ export default class AilosWrapper {
 
     this.auth = auth.bind(this);
     this.account = account.bind(this)();
+    this.transfer = transfer.bind(this)();
   }
 
   setToken(token) {
     this.token = token;
   }
 
-  request(type, data) {
-    const headers = {
+  request(type, data, additionalBody = undefined) {
+    // Removes undefined keys
+    Object.keys(data).forEach(key => data[key] === undefined && delete data[key]);
+
+    let headers = {
       method: 'POST',
       headers: new Headers({
         Authorization: `Bearer ${this.token}` 
@@ -28,10 +33,11 @@ export default class AilosWrapper {
       body: JSON.stringify({
         chn: "3",
         data: data,
-        trn: type
+        trn: type,
+        ...additionalBody
       })
     };
-
+    
     return fetch(API_URL, headers)
             .then(resp => resp.text())
             .then(validateAilosResponse);
