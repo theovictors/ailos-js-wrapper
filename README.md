@@ -54,6 +54,8 @@ const session = new AilosWrapper({
 
 ## //TODO: Métodos
 
+> Veja os exemplos na pasta **demo**
+
 ## ATENÇÃO!
 
 **NÃO** utilize essa biblioteca no back-end caso utilize credenciais de outros usuários! Implemente no front-end e transfira apenas os dados necessários para o seu servidor. 
