@@ -1,5 +1,3 @@
-import validateAilosResponse from './utils';
-
 export default function account() {
 
   return {
