@@ -7,9 +7,9 @@ export default function account() {
     getStatement: (startDate, endDate) => this.request(327, {
       DATA_INICIAL: startDate,
       DATA_FINAL: endDate,
-      REGISTROS_POR_PAGINA: 50,     // TODO: pagination
+      REGISTROS_POR_PAGINA: 50, // TODO: pagination
       POSICAO_PRIMEIRO_REGISTRO: 1
     })
-  }
+  };
 
 }

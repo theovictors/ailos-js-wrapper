@@ -16,8 +16,8 @@ export default function transfer() {
       TIPO_PESSOA_CREDOR: recipient.typePerson, // 1 fisica 2 juridica
       DATA_EFETIVACAO_PAGTO: isToday(recipient.date) ? recipient.date : undefined,
       DATA_INICIAL_PERIODICO: isToday(recipient.date) ? undefined : recipient.date,
-      CODIGO_TIPO_EFETIVACAO_TRANSFERENCIA: isToday(recipient.date) ? 1 : 2, // Checks if transaction is for today or scheduled
-      MEIO_PAGAMENTO: recipient.bankCode == '85' ? '5' : '4', // Checks if Ailos or other banks
+      CODIGO_TIPO_EFETIVACAO_TRANSFERENCIA: isToday(recipient.date) ? 1 : 2, // transaction is for today or scheduled
+      MEIO_PAGAMENTO: recipient.bankCode === '85' ? '5' : '4', // Checks if Ailos or other banks
       VALOR_PAGTO: value,
       DESCONTO_PAGTO: 0,
       FINALIDADE: recipient.finality,
@@ -26,7 +26,7 @@ export default function transfer() {
       INDICA_CADASTRO_FAVORITO: false
     }, {
       valueTO: {
-        valueCurrent: value,
+        valueCurrent: value
       },
       seqFlow: 4
     }),
@@ -43,6 +43,6 @@ export default function transfer() {
       CODIGO_AGENCIA: agencyCode,
       CODIGO_BANCO: bankCode
     })
-  }
+  };
 
 }

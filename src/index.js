@@ -28,19 +28,19 @@ export default class AilosWrapper {
     let headers = {
       method: 'POST',
       headers: new Headers({
-        Authorization: `Bearer ${this.token}` 
+        Authorization: `Bearer ${this.token}`
       }),
       body: JSON.stringify({
-        chn: "3",
+        chn: '3',
         data: data,
         trn: type,
         ...additionalBody
       })
     };
-    
+
     return fetch(API_URL, headers)
-            .then(resp => resp.text())
-            .then(validateAilosResponse);
+      .then(resp => resp.text())
+      .then(validateAilosResponse);
   }
 
 }
