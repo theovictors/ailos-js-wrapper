@@ -2,9 +2,9 @@
   "name": "ailos-js-wrapper",
   "version": "1.0.1",
   "description": "",
-  "main": "lib/ailos-js-wrapper.js",
+  "main": "lib/ailos-js-wrapper.min.js",
   "scripts": {
-    "build": "webpack --env dev && webpack --env build && npm run test",
+    "build": "webpack --env dev && webpack --env build",
     "dev": "webpack --progress --colors --watch --env dev",
     "test": "mocha --require babel-register --colors ./test/*.spec.js",
     "test:watch": "mocha --require babel-register --colors -w ./test/*.spec.js"
@@ -25,6 +25,7 @@
     "babel-loader": "^8.0.4",
     "babel-plugin-add-module-exports": "^1.0.0",
     "babel-preset-env": "^7.0.0-beta.3",
+    "babel-register": "^6.26.0",
     "chai": "^3.5.0",
     "coveralls": "^3.0.2",
     "eslint": "^5.7.0",
