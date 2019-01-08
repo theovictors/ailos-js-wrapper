@@ -2,8 +2,10 @@ import auth from './auth';
 import account from './account';
 import transfer from './transfer';
 
+import axios from 'axios';
+
 import API_URL from './config';
-import { validateAilosResponse } from './utils';
+import utils from './utils';
 
 export default class AilosWrapper {
   constructor(options) {
@@ -25,22 +27,24 @@ export default class AilosWrapper {
     // Removes undefined keys
     Object.keys(data).forEach(key => data[key] === undefined && delete data[key]);
 
-    let headers = {
-      method: 'POST',
-      headers: new Headers({
-        Authorization: `Bearer ${this.token}`
-      }),
-      body: JSON.stringify({
-        chn: '3',
-        data: data,
-        trn: type,
-        ...additionalBody
-      })
+    let body = {
+      chn: '3',
+      data: data,
+      trn: type,
+      ...additionalBody
     };
 
-    return fetch(API_URL, headers)
-      .then(resp => resp.text())
-      .then(validateAilosResponse);
+    let config = {
+      headers: {
+        Authorization: `Bearer ${this.token}`
+      }
+    };
+
+    return axios.post(API_URL, body, config)
+      .then(resp => utils.validateAilosResponse(resp.data))
+      .catch(error => {
+        throw new Error(error.response.data);
+      });
   }
 
 }
