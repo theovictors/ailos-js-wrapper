@@ -2,10 +2,6 @@
 
 Wrapper para trabalhar com a API do [Sistema Ailos](https://www.ailos.coop.br/).
 
-## Dependências
-
-Essa biblioteca depende do [fetch](https://fetch.spec.whatwg.org/) para fazer requisições para a API da Ailos. Para ambientes que não suportam o fetch, você precisa prover um [polyfill](https://github.com/github/fetch) para navegadores, ou [polyfill](https://github.com/bitinn/node-fetch) para o Node.
-
 ## Instalação
 
 ```sh

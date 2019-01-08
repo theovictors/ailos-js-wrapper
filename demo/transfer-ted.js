@@ -1,7 +1,4 @@
-/* to run: babel-node transfer.js */
-
-global.fetch = require('node-fetch');
-global.Headers = fetch.Headers;
+/* to run: babel-node transfer-ted.js */
 
 import AilosWrapper from '../src/index';
 

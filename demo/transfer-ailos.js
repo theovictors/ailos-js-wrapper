@@ -1,8 +1,5 @@
 /* to run: babel-node transfer-ailos.js */
 
-global.fetch = require('node-fetch');
-global.Headers = fetch.Headers;
-
 import AilosWrapper from '../src/index';
 
 const session = new AilosWrapper({
