@@ -1,5 +1,5 @@
 
-import { isToday } from './utils';
+import utils from './utils';
 
 export default function transfer() {
 
@@ -14,9 +14,9 @@ export default function transfer() {
       NOME_CREDOR: recipient.name,
       TIPO_CONTA_CREDOR: recipient.typeAccount, // 1 corrente 2 poupança 3 pagamento
       TIPO_PESSOA_CREDOR: recipient.typePerson, // 1 fisica 2 juridica
-      DATA_EFETIVACAO_PAGTO: isToday(recipient.date) ? recipient.date : undefined,
-      DATA_INICIAL_PERIODICO: isToday(recipient.date) ? undefined : recipient.date,
-      CODIGO_TIPO_EFETIVACAO_TRANSFERENCIA: isToday(recipient.date) ? 1 : 2, // transaction is for today or scheduled
+      DATA_EFETIVACAO_PAGTO: utils.isToday(recipient.date) ? recipient.date : undefined,
+      DATA_INICIAL_PERIODICO: utils.isToday(recipient.date) ? undefined : recipient.date,
+      CODIGO_TIPO_EFETIVACAO_TRANSFERENCIA: utils.isToday(recipient.date) ? 1 : 2, // today or scheduled
       MEIO_PAGAMENTO: recipient.bankCode === '85' ? '5' : '4', // Checks if Ailos or other banks
       VALOR_PAGTO: value,
       DESCONTO_PAGTO: 0,

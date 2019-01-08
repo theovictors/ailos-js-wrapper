@@ -1,36 +1,28 @@
-export default class Utils {
+export default {
 
-  static validateAilosResponse = (response) => {
+  validateAilosResponse(response) {
     return new Promise((resolve, reject) => {
       if (!response) {
         reject(new Error('Empty response, is request valid?'));
       }
 
-      let responseJSON;
-
-      try {
-        responseJSON = JSON.parse(response);
-      } catch (err) {
-        reject(new Error(`${response}\n${err}`));
+      if (typeof response.data === 'undefined') {
+        reject(new Error(JSON.stringify(response)));
       }
 
-      if (typeof responseJSON.data === 'undefined') {
-        reject(new Error(JSON.stringify(responseJSON)));
+      if (typeof response.data.OUTPUT_DATA.TOKEN !== 'undefined') {
+        resolve(response.data.OUTPUT_DATA.TOKEN);
       }
 
-      if (typeof responseJSON.data.OUTPUT_DATA.TOKEN !== 'undefined') {
-        resolve(responseJSON.data.OUTPUT_DATA.TOKEN);
-      }
-
-      if (typeof responseJSON.data.OUTPUT_DATA.WS_RESULT !== 'undefined') {
-        resolve(responseJSON.data.OUTPUT_DATA.WS_RESULT);
+      if (typeof response.data.OUTPUT_DATA.WS_RESULT !== 'undefined') {
+        resolve(response.data.OUTPUT_DATA.WS_RESULT);
       }
 
       resolve({});
     });
-  }
+  },
 
-  static isToday = (date) => {
+  isToday(date) {
     let today = new Date();
     let compareDate = new Date(date);
 
@@ -38,4 +30,5 @@ export default class Utils {
             today.getUTCMonth() === compareDate.getUTCMonth() &&
             today.getUTCDate() === compareDate.getUTCDate();
   }
-}
+
+};
